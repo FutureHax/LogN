@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.t3hh4xx0r.tapn.MainActivity" >
+
+    <item
+        android:id="@+id/action_add_identity"
+        android:icon="@drawable/ic_action_add_identity"
+        android:orderInCategory="0"
+        android:showAsAction="always"
+        android:title="@string/action_identity"/>
+    <item
+        android:id="@+id/nuked"
+        android:icon="@drawable/ic_action_nuked"
+        android:showAsAction="always"
+        android:orderInCategory="1"
+        android:title="Nuked"/>
+    <item
+        android:id="@+id/action_buy"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_white_buy"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_upgrade"/>
+     <item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_action_help"
+        android:orderInCategory="3"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_help"/>
+    <item
+        android:id="@+id/action_feedback"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_action_feedback"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_feedback"/>
+
+</menu>

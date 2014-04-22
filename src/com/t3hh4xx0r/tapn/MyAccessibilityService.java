@@ -46,6 +46,12 @@ public class MyAccessibilityService extends AccessibilityService {
 		clipboard.setPrimaryClip(clip);
 	}
 
+	public void cancelInput(Context c) {
+		Log.d("CANCEL DATA", Boolean.toString(source.refresh()));
+		Log.d("CANCEL DATA", Boolean.toString(source
+				.performAction(AccessibilityNodeInfo.ACTION_PASTE)));
+	}
+	
 	public void inputData(Context c, String data) throws JSONException {
 		try {
 			lastClip = clipboard.getPrimaryClip().getItemAt(0).coerceToText(c)

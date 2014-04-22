@@ -24,6 +24,7 @@ public class NFCTapToInputActivity extends Activity {
 	private NfcAdapter mAdapter;
 	private PendingIntent mPendingIntent;
 	String payload = "";
+	boolean doInput = true;
 
 	public static final int ACTIVATION_REQUEST = 1;
 
@@ -52,9 +53,11 @@ public class NFCTapToInputActivity extends Activity {
 		resolveIntent(getIntent());
 
 		TextView tap = new TextView(this);
-		tap.setText("Tap your tag to sign in.");
+		tap.setText("Tap your tag to sign in, or hit the back button to do a simple paste.");
 		tap.setTextColor(Color.WHITE);
-		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		tap.setTextSize(18);
+		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
 		tap.setGravity(Gravity.CENTER);
 		tap.setLayoutParams(lp);
 		setContentView(tap);
@@ -62,6 +65,12 @@ public class NFCTapToInputActivity extends Activity {
 
 	public void onNewIntent(Intent intent) {
 		resolveIntent(intent);
+	}
+
+	@Override
+	public void onBackPressed() {
+		doInput = false;
+		super.onBackPressed();
 	}
 
 	public void onPause() {
@@ -106,10 +115,14 @@ public class NFCTapToInputActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		try {
-			MyAccessibilityService.sSharedInstance.inputData(this, payload);
-		} catch (JSONException e) {
-			e.printStackTrace();
+		if (doInput) {
+			try {
+				MyAccessibilityService.sSharedInstance.inputData(this, payload);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		} else {
+			MyAccessibilityService.sSharedInstance.cancelInput(this);
 		}
 	}
 

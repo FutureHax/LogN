@@ -736,7 +736,7 @@ public class MainActivity extends Activity {
 						android.content.Intent.ACTION_SEND);
 				emailIntent.setType("plain/text");
 				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
-						new String[] { "r2doesinc@gmail.com.com" });
+						new String[] { "r2doesinc@futurehax.com" });
 				emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 						"TapN Feedback");
 				startActivity(Intent.createChooser(emailIntent, "Send via..."));
